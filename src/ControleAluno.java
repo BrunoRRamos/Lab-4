@@ -4,11 +4,22 @@ public class ControleAluno {
     private HashMap<String, Aluno> alunosMap = new HashMap<>();
 
     public String cadastraAluno (String matricula, String nome, String curso) {
-        alunosMap.put(matricula, new Aluno(matricula, nome, curso));
-        return "";
+        Aluno novoAluno = new Aluno(matricula, nome, curso);
+        if (!(existeAluno(novoAluno))) {
+            alunosMap.put(matricula, novoAluno);
+            return "CADASTRO REALIZADO!";
+        } else {
+            throw new IllegalArgumentException("MATRÍCULA JÁ CADASTRADA!");
+        }
     }
 
-    private boolean verificaAluno (String matricula) {
-        return false;
+    public String exibeAluno(String matricula) {
+        Aluno aluno = alunosMap.get(matricula);
+        return aluno.toString();
     }
+
+    private boolean existeAluno(Aluno aluno) {
+        return this.alunosMap.containsKey(aluno.getMatricula());
+    }
+
 }
