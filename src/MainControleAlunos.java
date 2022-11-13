@@ -34,7 +34,7 @@ public class MainControleAlunos {
                 exibeAluno(scanner, controleAluno);
                 break;
             case "N":
-
+                cadastraGrupo(scanner, controleAluno);
                 break;
             case "A":
 
@@ -67,7 +67,21 @@ public class MainControleAlunos {
             String matricula = scanner.next();
             System.out.println(controleAluno.exibeAluno(matricula));
         } catch (NullPointerException e) {
-            System.out.println("Aluno não existe");
+            System.out.println(e.getMessage());
         }
     }
+
+    private static void cadastraGrupo(Scanner scanner, ControleAluno controleAluno) {
+        System.out.print("\nGrupo: ");
+        String nome = scanner.next();
+        scanner.nextLine();
+        System.out.print("\nTamanho: ");
+        int numeroPessoas = scanner.nextInt();
+        try {
+            System.out.println(controleAluno.cadastraGrupo(nome, numeroPessoas));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 }
