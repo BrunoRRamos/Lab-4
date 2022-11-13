@@ -1,9 +1,13 @@
+import java.util.ArrayList;
+
 public class Aluno {
     private String matricula;
     private String nome;
     private String curso;
+    private ArrayList gruposAlocados;
 
     public Aluno(String matricula, String nome, String curso) {
+        this.gruposAlocados = new ArrayList();
         this.matricula = matricula;
         this.nome = nome;
         this.curso = curso;
@@ -24,6 +28,10 @@ public class Aluno {
         int resultado = 1;
         resultado = primo * resultado + (matricula == null ? 0 : matricula.hashCode());
         return resultado;
+    }
+
+    public void alocaEmGrupo(String nomeGrupo) {
+        this.gruposAlocados.add(nomeGrupo);
     }
 
     @Override

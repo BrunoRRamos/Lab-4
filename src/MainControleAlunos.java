@@ -37,7 +37,7 @@ public class MainControleAlunos {
                 cadastraGrupo(scanner, controleAluno);
                 break;
             case "A":
-
+                alocarVerificar(scanner, controleAluno);
                 break;
             case "O":
 
@@ -79,6 +79,45 @@ public class MainControleAlunos {
         int numeroPessoas = scanner.nextInt();
         try {
             System.out.println(controleAluno.cadastraGrupo(nome, numeroPessoas));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void alocarVerificar(Scanner scanner, ControleAluno controleAluno) {
+        String comandoEscolha = menuCadastraVerifica(scanner);
+        try {
+            escolhaCadastraVerifica(scanner, comandoEscolha, controleAluno);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("OPAÇÃO INVALIDA!");
+        }
+    }
+
+    private static void escolhaCadastraVerifica(Scanner scanner, String opcao, ControleAluno controleAluno) {
+        switch (opcao) {
+            case "A":
+                alocaAluno(scanner, controleAluno);
+                return;
+            case "P":
+               return;
+            default:
+                System.out.println("Opção inválida!");
+        }
+    }
+
+    private static String menuCadastraVerifica(Scanner scanner) {
+        System.out.print("\n(A)locar Aluno ou (P)ertinência a Grupo? ");
+        return scanner.next().toUpperCase();
+    }
+
+    private static void alocaAluno(Scanner scanner, ControleAluno controleAluno) {
+        scanner.nextLine();
+        System.out.print("\nMatricula: ");
+        String matricula = scanner.nextLine();
+        System.out.print("\nGrupo: ");
+        String nomeGrupo = scanner.nextLine();
+        try {
+            System.out.println(controleAluno.cadastraAlunoGrupo(matricula, nomeGrupo));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

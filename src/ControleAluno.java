@@ -22,13 +22,16 @@ public class ControleAluno {
     }
 
     public String cadastraAlunoGrupo(String matricula, String nomeGrupo) {
+        Aluno aluno = buscaAluno(matricula);
         Grupo grupo = buscaGrupo(nomeGrupo);
         if (grupo.getNumeroMaxPessoas() == 0) {
             grupo.cadastraAlunoGrupo(matricula);
+            aluno.alocaEmGrupo(nomeGrupo);
             return "ALUNO ALOCADO!";
         }
         if (grupo.getNumeroCadastrosAlunos() <= grupo.getNumeroMaxPessoas()) {
             grupo.cadastraAlunoGrupo(matricula);
+            aluno.alocaEmGrupo(nomeGrupo);
             grupo.adicionaAluno();
             return "ALUNO ALOCADO!";
         }
@@ -66,5 +69,12 @@ public class ControleAluno {
         throw new IllegalArgumentException("GRUPO NÃO CADASTRADO!");
     }
 
+    private Aluno buscaAluno(String matricula) {
+        try {
+            return alunosMap.get(matricula);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("ALUNO NÃO CADASTRADO!");
+        }
+    }
 
 }
