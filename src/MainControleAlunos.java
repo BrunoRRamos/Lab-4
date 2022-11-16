@@ -127,9 +127,9 @@ public class MainControleAlunos {
     private static void verificaPertinecia(Scanner scanner, ControleAluno controleAluno) {
         scanner.nextLine();
         System.out.print("\nGrupo: ");
-        String matricula = scanner.nextLine();
-        System.out.print("\nMatricula: ");
-        String nomeGrupo = scanner.next();
+        String nomeGrupo = scanner.nextLine();
+        System.out.print("\nAluno: ");
+        String matricula = scanner.next();
         try {
             System.out.println(controleAluno.verificaAlunoGrupo(nomeGrupo, matricula));
         } catch (IllegalArgumentException e) {
