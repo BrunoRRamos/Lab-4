@@ -49,30 +49,33 @@ public class ControleAluno {
 
     private void existeGrupo (String nome) {
         if (!gruposMap.containsKey(nome)) {
-            throw new IllegalArgumentException("GRUPO JÁ CADASTRADO.");
+            throw new IllegalArgumentException("GRUPO NÃO CADASTRADO.");
         }
     }
 
     private void existeAluno(String matricula) {
         if (!alunosMap.containsKey(matricula)) {
-            throw new IllegalArgumentException("ALUNO JÁ CADASTRADO.");
+            throw new IllegalArgumentException("ALUNO NÃO CADASTRADO.");
         }
     }
 
     private Grupo buscaGrupo(String nomeGrupo) {
-        existeGrupo(nomeGrupo);
-        return gruposMap.get(nomeGrupo);
+        if (gruposMap.containsKey(nomeGrupo)) {
+            return gruposMap.get(nomeGrupo);
+        }
+        throw new IllegalArgumentException("GRUPO NÃO CADASTRADO.");
     }
 
     private Aluno buscaAluno(String matricula) {
-        existeAluno(matricula);
-        return alunosMap.get(matricula);
+        if (alunosMap.containsKey(matricula)) {
+            return alunosMap.get(matricula);
+        }
+        throw new IllegalArgumentException("ALUNO NÃO CADASTRADO.");
     }
 
     public String verificaAlunoGrupo(String grupoNome, String matricula) {
         Grupo grupo = buscaGrupo(grupoNome);
-        Aluno aluno = buscaAluno(matricula);
-        if (grupo.verificaCadastroAluno(aluno)) {
+        if (grupo.verificaCadastroAluno(matricula)) {
             return "ALUNO PERTENCE AO GRUPO.";
         }
         throw new IllegalArgumentException("ALUNO NÃO PERTENCE AO GRUPO.");

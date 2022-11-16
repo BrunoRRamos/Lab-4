@@ -131,7 +131,7 @@ public class MainControleAlunos {
         System.out.print("\nMatricula: ");
         String nomeGrupo = scanner.next();
         try {
-            controleAluno.verificaAlunoGrupo(nomeGrupo, matricula);
+            System.out.println(controleAluno.verificaAlunoGrupo(nomeGrupo, matricula));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
