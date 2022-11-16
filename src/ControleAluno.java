@@ -1,23 +1,24 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ControleAluno {
     private HashMap<String, Aluno> alunosMap = new HashMap<>();
-    private ArrayList<Grupo> gruposList = new ArrayList<>();
+    private HashMap<String, Grupo> gruposMap = new HashMap<>();
 
     public String cadastraAluno (String matricula, String nome, String curso) {
-        Aluno novoAluno = new Aluno(matricula, nome, curso);
-        if (!(existeAluno(novoAluno))) {
-            alunosMap.put(matricula, novoAluno);
-            return "CADASTRO REALIZADO!";
+        if (alunosMap.containsKey(matricula)) {
+            throw new IllegalArgumentException("ALUNO JÁ CADASTRADO.");
         }
-        throw new IllegalArgumentException("MATRÍCULA JÁ CADASTRADA!");
+        Aluno novoAluno = new Aluno(matricula, nome, curso);
+        alunosMap.put(matricula, novoAluno);
+        return "CADASTRO REALIZADO!";
     }
 
     public String cadastraGrupo (String nome, int numeroPessoas) {
-        existeGrupo(nome);
+        if (gruposMap.containsKey(nome)) {
+            throw new IllegalArgumentException("GRUPO JÁ CADASTRADO.");
+        }
         Grupo newGrupo = new Grupo(nome, numeroPessoas);
-        gruposList.add(newGrupo);
+        gruposMap.put(nome, newGrupo);
         return "CADASTRO REALIZADO!";
     }
 
@@ -40,41 +41,32 @@ public class ControleAluno {
 
     public String exibeAluno(String matricula) {
         Aluno aluno = alunosMap.get(matricula);
-        if (aluno == null) {
+        if (!(alunosMap.containsKey(matricula))){
             throw new NullPointerException("ALUNO NÃO CADASTRADO.");
         }
         return aluno.toString();
     }
 
     private void existeGrupo (String nome) {
-        for (int i = 0; i < gruposList.size(); i++) {
-            Grupo grupoAtual = gruposList.get(i);
-            if (grupoAtual.getNome().equalsIgnoreCase(nome)) {
-                throw new IllegalArgumentException("GRUPO JÁ CADASTRADO!");
-            }
+        if (!gruposMap.containsKey(nome)) {
+            throw new IllegalArgumentException("GRUPO JÁ CADASTRADO.");
         }
     }
 
-    private boolean existeAluno(Aluno aluno) {
-        return this.alunosMap.containsKey(aluno.getMatricula());
+    private void existeAluno(String matricula) {
+        if (!alunosMap.containsKey(matricula)) {
+            throw new IllegalArgumentException("ALUNO JÁ CADASTRADO.");
+        }
     }
 
     private Grupo buscaGrupo(String nomeGrupo) {
-        for (int i = 0; i < gruposList.size(); i++) {
-            Grupo grupoAtual = gruposList.get(i);
-            if (grupoAtual.getNome().equalsIgnoreCase(nomeGrupo)){
-                return grupoAtual;
-            }
-        }
-        throw new IllegalArgumentException("GRUPO NÃO CADASTRADO!");
+        existeGrupo(nomeGrupo);
+        return gruposMap.get(nomeGrupo);
     }
 
     private Aluno buscaAluno(String matricula) {
-        try {
-            return alunosMap.get(matricula);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("ALUNO NÃO CADASTRADO!");
-        }
+        existeAluno(matricula);
+        return alunosMap.get(matricula);
     }
 
     public String verificaAlunoGrupo(String grupoNome, String matricula) {
