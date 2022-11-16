@@ -10,7 +10,7 @@ public class Grupo {
         this.nome = nome;
         this.numeroCadastrosAlunos = 0;
         this.numeroMaxPessoas = numeroPessoas;
-        this.grupoAlunosList = new ArrayList();
+        this.grupoAlunosList = new ArrayList<>();
     }
 
     public int getNumeroMaxPessoas() {
@@ -42,9 +42,6 @@ public class Grupo {
     }
 
     public boolean verificaCadastroAluno(String matricula) {
-        if (this.grupoAlunosList.contains(matricula)) {
-            return true;
-        }
-        return false;
+        return this.grupoAlunosList.contains(matricula);
     }
 }
