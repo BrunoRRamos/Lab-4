@@ -40,4 +40,11 @@ public class Grupo {
     public void cadastraAlunoGrupo(String matriculaAluno) {
         this.grupoAlunosList.add(matriculaAluno);
     }
+
+    public boolean verificaCadastroAluno(Aluno aluno) {
+        if (this.grupoAlunosList.contains(aluno)) {
+            return true;
+        }
+        return false;
+    }
 }

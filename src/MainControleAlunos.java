@@ -99,6 +99,7 @@ public class MainControleAlunos {
                 alocaAluno(scanner, controleAluno);
                 return;
             case "P":
+                verificaPertinecia(scanner, controleAluno);
                return;
             default:
                 System.out.println("Opção inválida!");
@@ -123,4 +124,16 @@ public class MainControleAlunos {
         }
     }
 
+    private static void verificaPertinecia(Scanner scanner, ControleAluno controleAluno) {
+        scanner.nextLine();
+        System.out.print("\nGrupo: ");
+        String matricula = scanner.nextLine();
+        System.out.print("\nMatricula: ");
+        String nomeGrupo = scanner.nextLine();
+        try {
+            controleAluno.verificaAlunoGrupo(nomeGrupo, matricula);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

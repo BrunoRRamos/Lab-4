@@ -77,4 +77,13 @@ public class ControleAluno {
         }
     }
 
+    public String verificaAlunoGrupo(String grupoNome, String matricula) {
+        Grupo grupo = buscaGrupo(grupoNome);
+        Aluno aluno = buscaAluno(matricula);
+        if (grupo.verificaCadastroAluno(aluno)) {
+            return "ALUNO PERTENCE AO GRUPO.";
+        }
+        throw new IllegalArgumentException("ALUNO NÃO PERTENCE AO GRUPO.");
+    }
+
 }
