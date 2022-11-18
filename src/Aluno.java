@@ -47,4 +47,7 @@ public class Aluno {
         return false;
     }
 
+    public ArrayList<String> getGruposAlocados() {
+        return this.gruposAlocados;
+    }
 }

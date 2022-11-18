@@ -32,7 +32,7 @@ public class Grupo {
     @Override
     public String toString() {
         if (this.numeroMaxPessoas == 0) {
-            return String.format("- %s %s", this.nome, this.numeroCadastrosAlunos);
+            return String.format("- %s %s/∞", this.nome, this.numeroCadastrosAlunos);
         }
         return String.format("- %s %s/%s", this.nome, this.numeroCadastrosAlunos, this.numeroMaxPessoas);
     }

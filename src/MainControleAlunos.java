@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainControleAlunos {
@@ -40,7 +41,7 @@ public class MainControleAlunos {
                 alocarVerificar(scanner, controleAluno);
                 break;
             case "O":
-
+                checaGrupoAluno(scanner, controleAluno);
                 break;
             case "S":
 
@@ -99,7 +100,8 @@ public class MainControleAlunos {
                 alocaAluno(scanner, controleAluno);
                 return;
             case "P":
-               return;
+                verificaPertinecia(scanner, controleAluno);
+                return;
             default:
                 System.out.println("Opção inválida!");
         }
@@ -123,4 +125,30 @@ public class MainControleAlunos {
         }
     }
 
+    private static void verificaPertinecia(Scanner scanner, ControleAluno controleAluno) {
+        scanner.nextLine();
+        System.out.print("\nGrupo: ");
+        String nomeGrupo = scanner.nextLine();
+        System.out.print("\nAluno: ");
+        String matricula = scanner.next();
+        try {
+            System.out.println(controleAluno.verificaAlunoGrupo(nomeGrupo, matricula));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void checaGrupoAluno(Scanner scanner, ControleAluno controleAluno) {
+        scanner.nextLine();
+        System.out.print("\nAluno: ");
+        String matricula = scanner.next();
+        try {
+            ArrayList<String> infoGrupos = controleAluno.checagemGrupoAlunos(matricula);
+            for (int i = 0; i < infoGrupos.size(); i++) {
+                System.out.println(infoGrupos.get(i));
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
