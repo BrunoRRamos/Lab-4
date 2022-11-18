@@ -44,7 +44,7 @@ public class MainControleAlunos {
                 checaGrupoAluno(scanner, controleAluno);
                 break;
             case "S":
-
+                System.exit(0);
                 break;
 
             default:
