@@ -2,8 +2,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ControleAluno {
-    private HashMap<String, Aluno> alunosMap = new HashMap<>();
-    private ArrayList<Grupo> gruposList = new ArrayList<>();
+    private HashMap<String, Aluno> alunosMap;
+    private ArrayList<Grupo> gruposList;
+
+    public ControleAluno() {
+        this.alunosMap = new HashMap<>();
+        this.gruposList = new ArrayList<>();
+    }
 
     public String cadastraAluno (String matricula, String nome, String curso) {
         Aluno novoAluno = new Aluno(matricula, nome, curso);

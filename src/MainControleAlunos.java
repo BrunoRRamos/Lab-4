@@ -97,9 +97,9 @@ public class MainControleAlunos {
         switch (opcao) {
             case "A":
                 alocaAluno(scanner, controleAluno);
-                return;
+                break;
             case "P":
-               return;
+               break;
             default:
                 System.out.println("Opção inválida!");
         }
