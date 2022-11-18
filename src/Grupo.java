@@ -10,7 +10,7 @@ public class Grupo {
         this.nome = nome;
         this.numeroCadastrosAlunos = 0;
         this.numeroMaxPessoas = numeroPessoas;
-        this.grupoAlunosList = new ArrayList();
+        this.grupoAlunosList = new ArrayList<>();
     }
 
     public int getNumeroMaxPessoas() {
@@ -39,5 +39,9 @@ public class Grupo {
 
     public void cadastraAlunoGrupo(String matriculaAluno) {
         this.grupoAlunosList.add(matriculaAluno);
+    }
+
+    public boolean verificaCadastroAluno(String matricula) {
+        return this.grupoAlunosList.contains(matricula);
     }
 }
