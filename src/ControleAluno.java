@@ -26,6 +26,9 @@ public class ControleAluno {
     public String cadastraAlunoGrupo(String matricula, String nomeGrupo) {
         Aluno aluno = buscaAluno(matricula);
         Grupo grupo = buscaGrupo(nomeGrupo);
+        if (aluno.getGruposAlocados().contains(nomeGrupo)) {
+            throw new IllegalArgumentException("Aluno alocado com Sucesso, mas não inserido novamente.");
+        }
         if (grupo.getNumeroMaxPessoas() == 0) {
             grupo.cadastraAlunoGrupo(matricula);
             aluno.alocaEmGrupo(nomeGrupo);
