@@ -35,7 +35,7 @@ public class ControleAluno {
             grupo.adicionaAluno();
             return "ALUNO ALOCADO!";
         }
-        if (grupo.getNumeroCadastrosAlunos() <= grupo.getNumeroMaxPessoas()) {
+        if (grupo.getNumeroCadastrosAlunos() < grupo.getNumeroMaxPessoas()) {
             grupo.cadastraAlunoGrupo(matricula);
             aluno.alocaEmGrupo(nomeGrupo);
             grupo.adicionaAluno();
@@ -75,6 +75,7 @@ public class ControleAluno {
     }
 
     public String verificaAlunoGrupo(String grupoNome, String matricula) {
+        existeAluno(matricula);
         if (alunosMap.containsKey(matricula)) {
             Grupo grupo = buscaGrupo(grupoNome);
             if (grupo.verificaCadastroAluno(matricula)) {

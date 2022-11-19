@@ -82,6 +82,60 @@ class ControleAlunoTest {
 
     @Test
     void Caso_8() {
+        assertEquals("CADASTRO REALIZADO!", controleAluno.cadastraGrupo("Listas", 1));
+        assertEquals("ALUNO ALOCADO!", controleAluno.cadastraAlunoGrupo("250", "Listas"));
+
+        exception = assertThrows(IndexOutOfBoundsException.class, () -> {
+            controleAluno.cadastraAlunoGrupo("202", "Listas");
+        });
+        assertEquals("GRUPO CHEIO!", exception.getMessage());
+    }
+
+    @Test
+    void Caso_9() {
+        assertEquals("CADASTRO REALIZADO!", controleAluno.cadastraGrupo("Listas", 0));
+        assertEquals("ALUNO ALOCADO!", controleAluno.cadastraAlunoGrupo("250", "Listas"));
+        assertEquals("ALUNO PERTENCE AO GRUPO.", controleAluno.verificaAlunoGrupo( "Listas", "250"));
+
+        exception = assertThrows(IllegalArgumentException.class, () -> {
+            controleAluno.verificaAlunoGrupo("Listas", "202");
+        });
+        assertEquals("ALUNO NÃO PERTENCE AO GRUPO.", exception.getMessage());
+    }
+
+    @Test
+    void Caso_10() {
+        exception = assertThrows(IllegalArgumentException.class, () -> {
+            controleAluno.verificaAlunoGrupo("Anatomia", "200");
+        });
+        assertEquals("GRUPO NÃO CADASTRADO.", exception.getMessage());
+    }
+
+    @Test
+    void Caso_11() {
+        assertEquals("CADASTRO REALIZADO!", controleAluno.cadastraGrupo("Programação OO", 0));
+        exception = assertThrows(IllegalArgumentException.class, () -> {
+            controleAluno.verificaAlunoGrupo("Programação OO", "100");
+        });
+        assertEquals("ALUNO NÃO CADASTRADO.", exception.getMessage());
+
+    }
+
+    @Test
+    void Caso_12() {
+        exception = assertThrows(IllegalArgumentException.class, () -> {
+            controleAluno.checagemGrupoAlunos("202");
+        });
+        assertEquals("O aluno não participa de grupos.", exception.getMessage());
+    }
+
+    @Test
+    void Caso_13() {
+        assertEquals("CADASTRO REALIZADO!", controleAluno.cadastraGrupo("Programação OO", 10));
+        assertEquals("CADASTRO REALIZADO!", controleAluno.cadastraGrupo("Listas", 10));
+        assertEquals("ALUNO ALOCADO!", controleAluno.cadastraAlunoGrupo("250", "Listas"));
+        assertEquals("ALUNO ALOCADO!", controleAluno.cadastraAlunoGrupo("250", "Programação OO"));
+        assertEquals("", controleAluno.checagemGrupoAlunos("250"));
 
     }
 
