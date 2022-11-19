@@ -93,7 +93,7 @@ public class ControleAluno {
             String infoGrupo = buscaGrupo(gruposAlocados.get(i)).toString();
             relacaoDeGrupos += infoGrupo + "\n";
         }
-        if (relacaoDeGrupos.isEmpty()) {
+        if (relacaoDeGrupos.isBlank()) {
             throw new IllegalArgumentException("O aluno não participa de grupos.");
         }
         return relacaoDeGrupos;
