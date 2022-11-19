@@ -85,13 +85,13 @@ public class ControleAluno {
         throw new IllegalArgumentException("ALUNO NÃO PERTENCE AO GRUPO.");
     }
 
-    public ArrayList<String> checagemGrupoAlunos(String matricula) {
-        ArrayList<String> relacaoDeGrupos = new ArrayList<String>();
+    public String checagemGrupoAlunos(String matricula) {
+        String relacaoDeGrupos = "";
         Aluno aluno = buscaAluno(matricula);
         ArrayList<String> gruposAlocados = aluno.getGruposAlocados();
         for (int i = 0; i < gruposAlocados.size(); i++) {
             String infoGrupo = buscaGrupo(gruposAlocados.get(i)).toString();
-            relacaoDeGrupos.add(infoGrupo);
+            relacaoDeGrupos += infoGrupo + "\n";
         }
         if (relacaoDeGrupos.isEmpty()) {
             throw new IllegalArgumentException("O aluno não participa de grupos.");

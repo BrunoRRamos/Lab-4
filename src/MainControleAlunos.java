@@ -143,10 +143,8 @@ public class MainControleAlunos {
         System.out.print("\nAluno: ");
         String matricula = scanner.next();
         try {
-            ArrayList<String> infoGrupos = controleAluno.checagemGrupoAlunos(matricula);
-            for (int i = 0; i < infoGrupos.size(); i++) {
-                System.out.println(infoGrupos.get(i));
-            }
+            String infoGrupos = controleAluno.checagemGrupoAlunos(matricula);
+            System.out.println(infoGrupos);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

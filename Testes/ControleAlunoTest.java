@@ -135,7 +135,7 @@ class ControleAlunoTest {
         assertEquals("CADASTRO REALIZADO!", controleAluno.cadastraGrupo("Listas", 10));
         assertEquals("ALUNO ALOCADO!", controleAluno.cadastraAlunoGrupo("250", "Listas"));
         assertEquals("ALUNO ALOCADO!", controleAluno.cadastraAlunoGrupo("250", "Programação OO"));
-        assertEquals("", controleAluno.checagemGrupoAlunos("250"));
+        assertEquals("- Listas 1/10\n- Programação OO 1/10\n", controleAluno.checagemGrupoAlunos("250"));
 
     }
 
