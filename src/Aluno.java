@@ -13,10 +13,6 @@ public class Aluno {
         this.curso = curso;
     }
 
-    public String getMatricula() {
-        return matricula;
-    }
-
     @Override
     public String toString() {
         return String.format("Aluno: %s - %s - %s", matricula, nome, curso);

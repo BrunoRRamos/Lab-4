@@ -21,10 +21,6 @@ public class Grupo {
         return numeroCadastrosAlunos;
     }
 
-    public String getNome() {
-        return this.nome;
-    }
-
     public void adicionaAluno() {
         this.numeroCadastrosAlunos += 1;
     }

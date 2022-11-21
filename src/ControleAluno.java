@@ -1,9 +1,19 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Laboratório de Programação 4 - Lab 4
+ *
+ * @author Bruno Rodrigues Ramos - 121210396
+ */
 public class ControleAluno {
-    private HashMap<String, Aluno> alunosMap = new HashMap<>();
-    private HashMap<String, Grupo> gruposMap = new HashMap<>();
+    private HashMap<String, Aluno> alunosMap;
+    private HashMap<String, Grupo> gruposMap;
+
+    public ControleAluno() {
+        this.alunosMap = new HashMap<>();
+        this.gruposMap = new HashMap<>();
+    }
 
     public String cadastraAluno (String matricula, String nome, String curso) {
         if (alunosMap.containsKey(matricula)) {
