@@ -16,7 +16,6 @@ class ControleAlunoTest {
         controleAluno.cadastraAluno("201", "Torbjorn Lindholm", "Engenharia Mecânica");
     }
 
-
     @Test
     void Caso_1() {
         assertEquals("CADASTRO REALIZADO!", controleAluno.cadastraGrupo("Programação OO", 0));

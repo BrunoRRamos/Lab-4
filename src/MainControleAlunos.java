@@ -1,6 +1,9 @@
-import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * Laboratório de Programação 4 - Lab 4
+ *
+ * @author Bruno Rodrigues Ramos - 121210396
+ */
 public class MainControleAlunos {
     public static void main(String[] args) {
         ControleAluno controleAluno = new ControleAluno();

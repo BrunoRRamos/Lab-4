@@ -2,19 +2,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Laboratório de Programação 4 - Lab 4
- *
- * @author Bruno Rodrigues Ramos - 121210396
+ * Classe responsável pela parte lógica do sistema.
+ * Solicitando criação de alunos, grupos e seus respectivos comportamentos.
  */
 public class ControleAluno {
     private HashMap<String, Aluno> alunosMap;
     private HashMap<String, Grupo> gruposMap;
 
+    /**
+     * Construtor, que instancia os HashMaps: alunosMap e gruposMap.
+     */
     public ControleAluno() {
         this.alunosMap = new HashMap<>();
         this.gruposMap = new HashMap<>();
     }
 
+    /**
+     * Método responsável por criar um novo objeto do tipo Aluno.
+     * @param matricula
+     * @param nome
+     * @param curso
+     * @return String de confirmação da criação do aluno.
+     */
     public String cadastraAluno (String matricula, String nome, String curso) {
         if (alunosMap.containsKey(matricula)) {
             throw new IllegalArgumentException("ALUNO JÁ CADASTRADO.");
@@ -24,6 +33,12 @@ public class ControleAluno {
         return "CADASTRO REALIZADO!";
     }
 
+    /**
+     * Método responsável por criar um novo objeto do tipo Grupo.
+     * @param nome
+     * @param numeroPessoas
+     * @return String de confirmação da criação do grupo.
+     */
     public String cadastraGrupo (String nome, int numeroPessoas) {
         if (gruposMap.containsKey(nome)) {
             throw new IllegalArgumentException("GRUPO JÁ CADASTRADO.");
@@ -33,6 +48,12 @@ public class ControleAluno {
         return "CADASTRO REALIZADO!";
     }
 
+    /**
+     * Método responsável por alocar um aluno em um grupo.
+     * @param matricula
+     * @param nomeGrupo
+     * @return String de confirmação de alocação do aluno no grupo.
+     */
     public String cadastraAlunoGrupo(String matricula, String nomeGrupo) {
         Aluno aluno = buscaAluno(matricula);
         Grupo grupo = buscaGrupo(nomeGrupo);
@@ -62,28 +83,6 @@ public class ControleAluno {
         return aluno.toString();
     }
 
-    private void existeGrupo (String nome) {
-        if (!gruposMap.containsKey(nome)) {
-            throw new IllegalArgumentException("GRUPO NÃO CADASTRADO.");
-        }
-    }
-
-    private void existeAluno(String matricula) {
-        if (!alunosMap.containsKey(matricula)) {
-            throw new IllegalArgumentException("ALUNO NÃO CADASTRADO.");
-        }
-    }
-
-    private Grupo buscaGrupo(String nomeGrupo) {
-        existeGrupo(nomeGrupo);
-        return gruposMap.get(nomeGrupo);
-    }
-
-    private Aluno buscaAluno(String matricula) {
-        existeAluno(matricula);
-        return alunosMap.get(matricula);
-    }
-
     public String verificaAlunoGrupo(String grupoNome, String matricula) {
         existeAluno(matricula);
         if (alunosMap.containsKey(matricula)) {
@@ -107,5 +106,27 @@ public class ControleAluno {
             throw new IllegalArgumentException("O aluno não participa de grupos.");
         }
         return relacaoDeGrupos;
+    }
+
+    private void existeGrupo (String nome) {
+        if (!gruposMap.containsKey(nome)) {
+            throw new IllegalArgumentException("GRUPO NÃO CADASTRADO.");
+        }
+    }
+
+    private void existeAluno(String matricula) {
+        if (!alunosMap.containsKey(matricula)) {
+            throw new IllegalArgumentException("ALUNO NÃO CADASTRADO.");
+        }
+    }
+
+    private Grupo buscaGrupo(String nomeGrupo) {
+        existeGrupo(nomeGrupo);
+        return gruposMap.get(nomeGrupo);
+    }
+
+    private Aluno buscaAluno(String matricula) {
+        existeAluno(matricula);
+        return alunosMap.get(matricula);
     }
 }
