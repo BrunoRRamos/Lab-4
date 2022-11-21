@@ -19,9 +19,9 @@ public class ControleAluno {
 
     /**
      * Método responsável por criar um novo objeto do tipo Aluno.
-     * @param matricula
-     * @param nome
-     * @param curso
+     * @param matricula Matrícula do aluno.
+     * @param nome Nome do aluno.
+     * @param curso Curso do aluno.
      * @return String de confirmação da criação do aluno.
      */
     public String cadastraAluno (String matricula, String nome, String curso) {
@@ -35,8 +35,8 @@ public class ControleAluno {
 
     /**
      * Método responsável por criar um novo objeto do tipo Grupo.
-     * @param nome
-     * @param numeroPessoas
+     * @param nome Nome do grupo.
+     * @param numeroPessoas Número máximo de pessoas no grupo.
      * @return String de confirmação da criação do grupo.
      */
     public String cadastraGrupo (String nome, int numeroPessoas) {
@@ -50,8 +50,8 @@ public class ControleAluno {
 
     /**
      * Método responsável por alocar um aluno em um grupo.
-     * @param matricula
-     * @param nomeGrupo
+     * @param matricula Matrícula do aluno a ser alocado no grupo.
+     * @param nomeGrupo Nome do grupo que vai receber o aluno.
      * @return String de confirmação de alocação do aluno no grupo.
      */
     public String cadastraAlunoGrupo(String matricula, String nomeGrupo) {
@@ -75,6 +75,11 @@ public class ControleAluno {
         throw new IndexOutOfBoundsException("GRUPO CHEIO!");
     }
 
+    /**
+     * Métoda responsável por exibir as informações do aluno; Matrícula, nome e curso.
+     * @param matricula Número da matrícula do aluno a ser consultado.
+     * @return String com as informações do aluno. (Matrícula, Nome e Curso)
+     */
     public String exibeAluno(String matricula) {
         Aluno aluno = alunosMap.get(matricula);
         if (!(alunosMap.containsKey(matricula))){
@@ -83,6 +88,12 @@ public class ControleAluno {
         return aluno.toString();
     }
 
+    /**
+     * Métoda responsável por verificar se um aluno pertence ou não a um grupo.
+     * @param grupoNome Nome do grupo a ser consultado.
+     * @param matricula Matrícula do aluno a ser consultado.
+     * @return String de confirmação se o aluno pertence ou não ao grupo.
+     */
     public String verificaAlunoGrupo(String grupoNome, String matricula) {
         existeAluno(matricula);
         if (alunosMap.containsKey(matricula)) {
@@ -94,6 +105,11 @@ public class ControleAluno {
         throw new IllegalArgumentException("ALUNO NÃO PERTENCE AO GRUPO.");
     }
 
+    /**
+     * Métoda responsável por listar todos os grupos que um aluno está participando.
+     * @param matricula Matrícula do aluno a ser consultado.
+     * @return String com a listagem dos grupos que o aluno participa.
+     */
     public String checagemGrupoAlunos(String matricula) {
         String relacaoDeGrupos = "";
         Aluno aluno = buscaAluno(matricula);
