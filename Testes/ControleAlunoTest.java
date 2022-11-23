@@ -116,7 +116,6 @@ class ControleAlunoTest {
             controleAluno.verificaAlunoGrupo("Programação OO", "100");
         });
         assertEquals("ALUNO NÃO CADASTRADO.", exception.getMessage());
-
     }
 
     @Test

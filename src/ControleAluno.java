@@ -40,11 +40,11 @@ public class ControleAluno {
      * @return String de confirmação da criação do grupo.
      */
     public String cadastraGrupo (String nome, int numeroPessoas) {
-        if (gruposMap.containsKey(nome)) {
+        if (gruposMap.containsKey(nome.toUpperCase())) {
             throw new IllegalArgumentException("GRUPO JÁ CADASTRADO.");
         }
         Grupo newGrupo = new Grupo(nome, numeroPessoas);
-        gruposMap.put(nome, newGrupo);
+        gruposMap.put(nome.toUpperCase(), newGrupo);
         return "CADASTRO REALIZADO!";
     }
 
@@ -56,19 +56,19 @@ public class ControleAluno {
      */
     public String cadastraAlunoGrupo(String matricula, String nomeGrupo) {
         Aluno aluno = buscaAluno(matricula);
-        Grupo grupo = buscaGrupo(nomeGrupo);
-        if (aluno.getGruposAlocados().contains(nomeGrupo)) {
+        Grupo grupo = buscaGrupo(nomeGrupo.toUpperCase());
+        if (aluno.getGruposAlocados().contains(nomeGrupo.toUpperCase())) {
             throw new IllegalArgumentException("Aluno alocado com Sucesso, mas não inserido novamente.");
         }
         if (grupo.getNumeroMaxPessoas() == 0) {
             grupo.cadastraAlunoGrupo(matricula);
-            aluno.alocaEmGrupo(nomeGrupo);
+            aluno.alocaEmGrupo(nomeGrupo.toUpperCase());
             grupo.adicionaAluno();
             return "ALUNO ALOCADO!";
         }
         if (grupo.getNumeroCadastrosAlunos() < grupo.getNumeroMaxPessoas()) {
             grupo.cadastraAlunoGrupo(matricula);
-            aluno.alocaEmGrupo(nomeGrupo);
+            aluno.alocaEmGrupo(nomeGrupo.toUpperCase());
             grupo.adicionaAluno();
             return "ALUNO ALOCADO!";
         }
@@ -81,10 +81,10 @@ public class ControleAluno {
      * @return String com as informações do aluno. (Matrícula, Nome e Curso)
      */
     public String exibeAluno(String matricula) {
-        Aluno aluno = alunosMap.get(matricula);
         if (!(alunosMap.containsKey(matricula))){
             throw new NullPointerException("ALUNO NÃO CADASTRADO.");
         }
+        Aluno aluno = alunosMap.get(matricula);
         return aluno.toString();
     }
 
@@ -97,7 +97,7 @@ public class ControleAluno {
     public String verificaAlunoGrupo(String grupoNome, String matricula) {
         existeAluno(matricula);
         if (alunosMap.containsKey(matricula)) {
-            Grupo grupo = buscaGrupo(grupoNome);
+            Grupo grupo = buscaGrupo(grupoNome.toUpperCase());
             if (grupo.verificaCadastroAluno(matricula)) {
                 return "ALUNO PERTENCE AO GRUPO.";
             }
