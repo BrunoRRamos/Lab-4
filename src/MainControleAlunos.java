@@ -55,14 +55,20 @@ public class MainControleAlunos {
         }
     }
     private static void cadastraAluno(Scanner scanner, ControleAluno controleAluno) {
-        System.out.println("Matrícula: ");
+        System.out.print("\nMatrícula: ");
         String matricula = scanner.next();
-        System.out.println("Nome: ");
+        System.out.print("\nNome: ");
         String nome = scanner.next();
-        System.out.println("Curso: ");
+        System.out.print("\nCurso: ");
+        String curso = scanner.next();
         scanner.nextLine();
-        String curso = scanner.nextLine();
-        System.out.println(controleAluno.cadastraAluno(matricula, nome, curso));
+
+        try {
+            System.out.println(controleAluno.cadastraAluno(matricula, nome, curso));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            System.exit(0);
+        }
     }
 
     private static void exibeAluno(Scanner scanner, ControleAluno controleAluno) {

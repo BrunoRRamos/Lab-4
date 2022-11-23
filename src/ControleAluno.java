@@ -25,8 +25,11 @@ public class ControleAluno {
      * @return String de confirmação da criação do aluno.
      */
     public String cadastraAluno (String matricula, String nome, String curso) {
+        if (matricula.isBlank() || nome.isBlank() || curso.isBlank()) {
+            throw new IllegalArgumentException("Entrada Inválida!");
+        }
         if (alunosMap.containsKey(matricula)) {
-            throw new IllegalArgumentException("ALUNO JÁ CADASTRADO.");
+            return "ALUNO JÁ CADASTRADO.";
         }
         Aluno novoAluno = new Aluno(matricula, nome, curso);
         alunosMap.put(matricula, novoAluno);
