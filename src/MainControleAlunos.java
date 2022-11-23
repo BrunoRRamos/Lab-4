@@ -26,7 +26,7 @@ public class MainControleAlunos {
                         "(S)im, quero Fechar o Programa!\n" +
                         "\n" +
                         "Opção> ");
-        return scanner.next().toUpperCase();
+        return scanner.nextLine().toUpperCase();
     }
 
     private static void comando(String opcao, ControleAluno controleAluno, Scanner scanner) {
@@ -55,14 +55,12 @@ public class MainControleAlunos {
         }
     }
     private static void cadastraAluno(Scanner scanner, ControleAluno controleAluno) {
-        System.out.print("\nMatrícula: ");
-        String matricula = scanner.next();
-        System.out.print("\nNome: ");
-        String nome = scanner.next();
-        System.out.print("\nCurso: ");
-        String curso = scanner.next();
-        scanner.nextLine();
-
+        System.out.println("Matrícula: ");
+        String matricula = scanner.nextLine();
+        System.out.println("Nome: ");
+        String nome = scanner.nextLine();
+        System.out.println("Curso: ");
+        String curso = scanner.nextLine();
         try {
             System.out.println(controleAluno.cadastraAluno(matricula, nome, curso));
         } catch (IllegalArgumentException e) {
