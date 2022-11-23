@@ -27,7 +27,7 @@ public class Grupo {
     }
 
     public int getNumeroCadastrosAlunos() {
-        return numeroCadastrosAlunos;
+        return this.numeroCadastrosAlunos;
     }
 
     /**
