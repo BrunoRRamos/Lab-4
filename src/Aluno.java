@@ -73,7 +73,7 @@ public class Aluno {
 
     /**
      * Retorna um ArrayLista contendo os nomes de todos os grupos que o aluno participa
-     * @return
+     * @return Array List de strings (nome dos grupos)
      */
     public ArrayList<String> getGruposAlocados() {
         return this.gruposAlocados;
